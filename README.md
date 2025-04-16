@@ -42,7 +42,7 @@ Don't make weekend plans – we roll dice tomorrow, 4:30pm L9 😉
 ### 2. Fork or Clone This Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/board-game-slack-reminder.git
+git clone https://github.com/furic/board-game-slack-reminder.git
 cd board-game-slack-reminder
 ```
 
