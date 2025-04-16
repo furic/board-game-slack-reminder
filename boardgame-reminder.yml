@@ -1,0 +1,26 @@
+name: Weekly Slack Board Game Reminder
+
+on:
+  schedule:
+    - cron: '0 7 * * 4' # Every Thursday 5 PM Melbourne time (AEST is UTC+10, this is UTC)
+  workflow_dispatch:
+
+jobs:
+  send-reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Send Slack message
+        run: node board-game-reminder.js
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

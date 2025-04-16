@@ -1,0 +1,9 @@
+{
+  "name": "board-game-reminder",
+  "version": "1.0.0",
+  "main": "board-game-reminder.js",
+  "license": "MIT",
+  "dependencies": {
+    "@slack/web-api": "^6.10.0"
+  }
+}
