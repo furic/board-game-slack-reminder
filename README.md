@@ -1,11 +1,97 @@
-# 🎲 Board Game Slack Reminder Bot
+# Board Game Slack Reminder
 
-A lightweight Slack bot that sends a fun, randomized message to a Slack channel every **Thursday at 5PM (Melbourne Time)** to remind your team about **Board Game Friday** 🎉
+A Slack bot that sends reminders for board game sessions and helps coordinate game selection through emoji reactions.
 
-Includes:
-- Randomized casual and funny reminder messages
-- Randomly picks 2 games from a custom game list
-- Runs fully automated using **GitHub Actions**
+## Features
+
+- Sends friendly reminders about board game sessions
+- Randomly selects games to suggest from a configurable list
+- Adds emoji reactions for each game, allowing participants to vote
+- Supports both production and testing environments
+- Shows player count requirements for each game
+
+## Setup
+
+1. Create a Slack App:
+   - Go to https://api.slack.com/apps
+   - Click "Create New App" and choose "From scratch"
+   - Name your app and select your workspace
+
+2. Configure Bot Token Scopes:
+   - In your app settings, go to "OAuth & Permissions"
+   - Under "Bot Token Scopes", add these scopes:
+     - `chat:write` (for sending messages)
+     - `channels:read` (for accessing channels)
+     - `groups:read` (for accessing private channels)
+     - `chat:write.public` (for sending messages to public channels)
+     - `reactions:write` (for adding emoji reactions)
+
+3. Install the app to your workspace:
+   - Click "Install to Workspace" and authorize the app
+   - Copy the "Bot User OAuth Token" for later use
+
+4. Clone and Setup:
+   ```bash
+   git clone https://github.com/furic/board-game-slack-reminder.git
+   cd board-game-slack-reminder
+   npm install
+   ```
+
+5. Configure Environment:
+   - Create a `.env` file for production:
+     ```
+     SLACK_BOT_TOKEN=xoxb-your-bot-token
+     ```
+   - Create a `.env.local` file for testing:
+     ```
+     SLACK_BOT_TOKEN=xoxb-your-bot-token
+     ```
+
+6. Add the Bot to Channels:
+   - Invite the bot to your channels using `/invite @your-bot-name`
+   - Required for both production (`board-games`) and testing (`board-games-testing`) channels
+
+7. Configure Games:
+   - Edit `src/config.json` for production settings
+   - Edit `src/config.test.json` for test settings
+   - Add or modify games with their emoji and player count requirements
+
+## Usage
+
+Build and run in production:
+```bash
+npm run build
+npm start
+```
+
+Run in test environment:
+```bash
+npm test
+```
+
+## Configuration
+
+The bot uses two configuration files:
+- `src/config.json`: Production configuration
+- `src/config.test.json`: Test configuration
+
+Each config file contains:
+- `channel`: The Slack channel name
+- `messages`: Array of possible reminder messages
+- `games`: Array of games with:
+  - `name`: Game name
+  - `emoji`: Associated emoji
+  - `minPlayers`: Minimum number of players required
+  - `maxPlayers`: Maximum number of players allowed
+
+## Recent Updates
+
+- Added TypeScript support for better type safety
+- Moved channel configuration to `config.json`
+- Added separate test configuration with `config.test.json`
+- Added player count requirements for games
+- Improved error handling and logging
+- Added emoji reactions for game voting
 
 ---
 
