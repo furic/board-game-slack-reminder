@@ -1,0 +1,35 @@
+{
+  "messages": [
+    "Heads up, nerds! It's board game Friday tomorrow 🃏 – 4:30pm at L9!",
+    "Warning: Friday fun incoming! Join us 4:30pm tomorrow at L9 🎲",
+    "Don't make weekend plans – we roll dice tomorrow, 4:30pm L9 😉",
+    "Game on! Board games kick off 4:30pm tomorrow at L9 – be there or be square 🎯"
+  ],
+  "games": [
+    {
+      "name": "Catan",
+      "emoji": "🌾",
+      "minPlayers": 3,
+      "maxPlayers": 4
+    },
+    {
+      "name": "Carcassonne",
+      "emoji": "🏰",
+      "minPlayers": 2,
+      "maxPlayers": 5
+    },
+    {
+      "name": "7 Wonders",
+      "emoji": "🏛️",
+      "minPlayers": 3,
+      "maxPlayers": 7
+    },
+    {
+      "name": "Azul",
+      "emoji": "🎨",
+      "minPlayers": 2,
+      "maxPlayers": 4
+    }
+  ],
+  "channel": "board-games-testing"
+} 

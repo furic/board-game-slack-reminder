@@ -5,8 +5,9 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc && cp src/config.json dist/",
+    "build:test": "tsc && cp src/config.test.json dist/config.json",
     "start": "node dist/board-game-reminder.js",
-    "test": "env-cmd -f .env.local npm start"
+    "test": "npm run build:test && env-cmd -f .env.local npm start"
   },
   "dependencies": {
     "@slack/web-api": "^6.10.0",
