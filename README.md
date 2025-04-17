@@ -12,6 +12,21 @@ A Slack bot that sends reminders for board game sessions and helps coordinate ga
 
 ## Setup
 
+### Method 1: Using App Manifest (Recommended)
+
+1. Create a Slack App:
+   - Go to https://api.slack.com/apps
+   - Click "Create New App" and choose "From an app manifest"
+   - Select your workspace
+   - Copy and paste the contents of `slack-manifest.json` from this repository
+   - Click "Create" to create the app
+
+2. Install the app to your workspace:
+   - Click "Install to Workspace" and authorize the app
+   - Copy the "Bot User OAuth Token" for later use
+
+### Method 2: From Scratch
+
 1. Create a Slack App:
    - Go to https://api.slack.com/apps
    - Click "Create New App" and choose "From scratch"
@@ -30,6 +45,8 @@ A Slack bot that sends reminders for board game sessions and helps coordinate ga
    - Click "Install to Workspace" and authorize the app
    - Copy the "Bot User OAuth Token" for later use
 
+### Continue with either method:
+
 4. Clone and Setup:
    ```bash
    git clone https://github.com/furic/board-game-slack-reminder.git
@@ -45,7 +62,7 @@ A Slack bot that sends reminders for board game sessions and helps coordinate ga
 
 6. Add the Bot to Channels:
    - Invite the bot to your channels using `/invite @your-bot-name`
-   - Required for both production (`board-games`) and testing (`board-games-testing`) channels
+   - Required for both production (`social-board-games`) and testing (`social-board-games-testing`) channels
 
 7. Configure Games:
    - Edit `src/config.json` for production settings
@@ -88,6 +105,7 @@ Each config file contains:
 - Added player count requirements for games
 - Improved error handling and logging
 - Added emoji reactions for game voting
+- Added Slack app manifest for easier setup
 
 ---
 
@@ -110,15 +128,15 @@ Don't make weekend plans – we roll dice tomorrow, 4:30pm L9 😉
 ## 🚀 Setup Instructions
 
 ### 1. Create a Slack App
-- Go to https://api.slack.com/apps
-- Create a new app (from scratch)
-- Add these bot token scopes:
-  - chat:write
-  - channels:read
-  - groups:read
-  - reactions:write
-- Install it to your workspace
-- Copy the Bot User OAuth Token (starts with `xoxb-...`)
+Choose either method:
+- **Using App Manifest (Recommended)**: Use the `slack-manifest.json` file
+- **From Scratch**: Manually configure the app with required scopes
+
+Required bot token scopes:
+- chat:write
+- channels:read
+- groups:read
+- reactions:write
 
 ---
 
@@ -171,6 +189,7 @@ You can manually trigger it too via GitHub Actions → "Run workflow"
 │   ├── config.json            # Production configuration
 │   └── config.test.json       # Test configuration
 ├── package.json               # Dependencies and scripts
+├── slack-manifest.json        # Slack app configuration
 └── .github/
     └── workflows/
         └── slack-reminder.yml # GitHub Actions workflow

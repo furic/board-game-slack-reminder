@@ -1,8 +1,6 @@
 import { WebClient } from '@slack/web-api';
 import * as dotenv from 'dotenv';
-import * as fs from 'fs';
-import * as path from 'path';
-import { AppConfig, Game } from './types';
+import { Game } from './types';
 import config from './config.json';
 
 // Load environment variables from .env file
@@ -16,8 +14,8 @@ if (!BOT_TOKEN) {
 
 const client = new WebClient(BOT_TOKEN);
 
-function pickRandomGames(count: number = config.games.pickCount): Game[] {
-  const shuffled = [...config.games.list].sort(() => 0.5 - Math.random());
+function pickRandomGames(count: number = 2): Game[] {
+  const shuffled = [...config.games].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 }
 
@@ -38,45 +36,22 @@ async function addReactions(channel: string, timestamp: string, games: Game[]): 
 
 async function sendReminder(): Promise<void> {
   try {
-    const message = await client.chat.postMessage({
+    const message = config.messages[Math.floor(Math.random() * config.messages.length)];
+    const games = pickRandomGames();
+    const gamesList = games.map(game => `${game.emoji} *${game.name}*`).join(', ');
+    const finalMessage = `${message}\n🎮 We'll likely play ${gamesList}!\n\nReact with the emoji of the game you'd like to play!`;
+
+    const result = await client.chat.postMessage({
       channel: config.channel,
-      text: "🎲 *Board Game Night Reminder!* 🎲\n\nReact with the emoji of the game you'd like to play:",
-      blocks: [
-        {
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: "🎲 *Board Game Night Reminder!* 🎲\n\nReact with the emoji of the game you'd like to play:"
-          }
-        },
-        {
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: config.games.map(game => `${game.emoji} ${game.name}`).join('\n')
-          }
-        }
-      ]
+      text: finalMessage
     });
 
-    if (!message.ok || !message.ts) {
-      throw new Error('Failed to send message');
+    if (result.ok && result.ts) {
+      console.log('Message sent successfully!');
+      await addReactions(config.channel, result.ts, games);
+    } else {
+      console.error('Failed to get message timestamp:', result);
     }
-
-    // Add reactions for each game
-    for (const game of config.games) {
-      try {
-        await client.reactions.add({
-          channel: config.channel,
-          timestamp: message.ts,
-          name: game.emoji
-        });
-      } catch (error) {
-        console.error(`Error adding reaction ${game.emoji} for ${game.name}:`, error);
-      }
-    }
-
-    console.log('Message sent successfully!');
   } catch (error) {
     console.error('Error sending reminder:', error);
   }
