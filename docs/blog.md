@@ -1,5 +1,7 @@
 # Building a Slack Bot for Board Game Nights with TypeScript and GitHub Actions
 
+![Board Game Slack Bot Feature Image](images/board-game-slack-bot-feature.png)
+
 As a software engineer and board game enthusiast, I wanted to solve a common problem in our office: organizing our weekly board game nights. While we had a regular schedule (Friday afternoons), we needed a better way to:
 1. Remind people about the upcoming session
 2. Suggest games to play
