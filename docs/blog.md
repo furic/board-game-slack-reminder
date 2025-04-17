@@ -49,13 +49,15 @@ Each game is configured with its name, Slack emoji name, and player count requir
   "games": [
     {
       "name": "Catan",
-      "emoji": "rice",      // Slack emoji name for 🌾
+      "emoji": "rice",      // Slack emoji name for reactions
+      "emojiUnicode": "🌾",  // Unicode emoji for reference
       "minPlayers": 3,
       "maxPlayers": 4
     },
     {
       "name": "Carcassonne",
-      "emoji": "castle",    // Slack emoji name for 🏰
+      "emoji": "castle",    // Slack emoji name for reactions
+      "emojiUnicode": "🏰",  // Unicode emoji for reference
       "minPlayers": 2,
       "maxPlayers": 5
     }
@@ -63,7 +65,7 @@ Each game is configured with its name, Slack emoji name, and player count requir
 }
 ```
 
-> **Note**: For emojis, we use Slack emoji names (without colons) instead of Unicode emojis. This ensures compatibility with Slack's reaction system. For example, use "rice" instead of 🌾, "castle" instead of 🏰. You can find available emoji names in your Slack workspace by typing `:` in the message input.
+> **Note**: For emojis, we use Slack emoji names (without colons) instead of Unicode emojis. This ensures compatibility with Slack's reaction system. For example, use "rice" instead of 🌾, "castle" instead of 🏰. You can find available emoji names in your Slack workspace by typing `:` in the message input. The `emojiUnicode` field is included for reference only and is not used by the bot.
 
 ### 3. Emoji Reactions
 The bot automatically adds emoji reactions for each suggested game, making it easy for people to indicate their preferences:
@@ -192,10 +194,11 @@ The AI helped establish a robust configuration system:
   "emoji": "🌾",  // This caused issues with Slack's API
 }
 
-// After: Using Slack emoji names
+// After: Using Slack emoji names with Unicode reference
 {
   "name": "Catan",
-  "emoji": "rice",  // This works correctly with Slack reactions
+  "emoji": "rice",        // This works correctly with Slack reactions
+  "emojiUnicode": "🌾",   // Kept for reference
 }
 ```
 
