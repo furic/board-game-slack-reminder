@@ -24,6 +24,21 @@ function pickRandomGames(count: number = config.games.pickCount): Game[] {
   return shuffled.slice(0, count);
 }
 
+async function addReactions(channel: string, timestamp: string, games: Game[]): Promise<void> {
+  for (const game of games) {
+    try {
+      await client.reactions.add({
+        channel,
+        timestamp,
+        name: game.emoji
+      });
+      console.log(`Added reaction ${game.emoji} for ${game.name}`);
+    } catch (error) {
+      console.error(`Error adding reaction ${game.emoji} for ${game.name}:`, error);
+    }
+  }
+}
+
 async function sendReminder(): Promise<void> {
   const message = config.messages[Math.floor(Math.random() * config.messages.length)];
   const games = pickRandomGames();
@@ -31,11 +46,17 @@ async function sendReminder(): Promise<void> {
   const finalMessage = `${message}\n🎮 We'll likely play ${gamesList}!\n\nReact with the emoji of the game you'd like to play!`;
 
   try {
-    await client.chat.postMessage({
+    const result = await client.chat.postMessage({
       channel: 'social-board-games',
       text: finalMessage
     });
-    console.log('Reminder sent successfully!');
+    
+    if (result.ok && result.ts) {
+      console.log('Message sent successfully!');
+      await addReactions('social-board-games', result.ts, games);
+    } else {
+      console.error('Failed to get message timestamp:', result);
+    }
   } catch (error) {
     console.error('Error sending reminder:', error);
   }
