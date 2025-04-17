@@ -26,8 +26,9 @@ function pickRandomGames(count: number = config.games.pickCount): string[] {
 
 async function sendReminder(): Promise<void> {
   const message = config.messages[Math.floor(Math.random() * config.messages.length)];
-  const [game1, game2] = pickRandomGames();
-  const finalMessage = `${message}\n🎮 We'll likely play *${game1}* and *${game2}*!`;
+  const games = pickRandomGames();
+  const gamesList = games.map(game => `*${game}*`).join(', ');
+  const finalMessage = `${message}\n🎮 We'll likely play ${gamesList}!`;
 
   try {
     await client.chat.postMessage({
