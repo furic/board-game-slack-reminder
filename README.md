@@ -38,11 +38,7 @@ A Slack bot that sends reminders for board game sessions and helps coordinate ga
    ```
 
 5. Configure Environment:
-   - Create a `.env` file for production:
-     ```
-     SLACK_BOT_TOKEN=xoxb-your-bot-token
-     ```
-   - Create a `.env.local` file for testing:
+   - Create a `.env` file:
      ```
      SLACK_BOT_TOKEN=xoxb-your-bot-token
      ```
@@ -120,6 +116,7 @@ Don't make weekend plans – we roll dice tomorrow, 4:30pm L9 😉
   - chat:write
   - channels:read
   - groups:read
+  - reactions:write
 - Install it to your workspace
 - Copy the Bot User OAuth Token (starts with `xoxb-...`)
 
@@ -145,9 +142,11 @@ Value: your `xoxb-...` token
 
 ### 4. Customize Your Message and Game List
 
-Edit the `board-game-reminder.js` file:
+Edit the configuration files:
+- `src/config.json` for production settings
+- `src/config.test.json` for test settings
 - ✍️ Add or change casual messages
-- 🎮 Modify the `boardGames` array
+- 🎮 Modify the games list with emojis and player counts
 
 ---
 
@@ -167,11 +166,14 @@ You can manually trigger it too via GitHub Actions → "Run workflow"
 
 ```
 📦 board-game-slack-reminder
-├── board-game-reminder.js       # The main script
-├── package.json                 # Slack SDK dependency
+├── src/
+│   ├── board-game-reminder.ts  # The main script
+│   ├── config.json            # Production configuration
+│   └── config.test.json       # Test configuration
+├── package.json               # Dependencies and scripts
 └── .github/
     └── workflows/
-        └── slack-reminder.yml  # GitHub Actions workflow
+        └── slack-reminder.yml # GitHub Actions workflow
 ```
 
 ---
