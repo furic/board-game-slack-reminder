@@ -33,18 +33,20 @@ After considering various options, I settled on:
 ### 1. Dynamic Message Generation
 Instead of sending the same boring message every week, I created a pool of casual, fun messages:
 
-```typescript
-const messages = [
-  "Heads up, nerds! It's board game Friday tomorrow 🃏 – 4:30pm at L9!",
-  "Warning: Friday fun incoming! Join us 4:30pm tomorrow at L9 🎲",
-  "Don't make weekend plans – we roll dice tomorrow, 4:30pm L9 😉"
-];
+```json
+{
+  "messages": [
+    "Heads up, nerds! It's board game Friday tomorrow 🃏 – 4:30pm at L9!",
+    "Warning: Friday fun incoming! Join us 4:30pm tomorrow at L9 🎲",
+    "Don't make weekend plans – we roll dice tomorrow, 4:30pm L9 😉"
+  ]
+}
 ```
 
 ### 2. Game Configuration
 Each game is configured with its name, Slack emoji name, and player count requirements:
 
-```typescript
+```json
 {
   "games": [
     {
@@ -56,7 +58,7 @@ Each game is configured with its name, Slack emoji name, and player count requir
     },
     {
       "name": "Carcassonne",
-      "emoji": "castle",    // Slack emoji name for reactions
+      "emoji": "european_castle",    // Slack emoji name for reactions
       "emojiUnicode": "🏰",  // Unicode emoji for reference
       "minPlayers": 2,
       "maxPlayers": 5
@@ -65,7 +67,7 @@ Each game is configured with its name, Slack emoji name, and player count requir
 }
 ```
 
-> **Note**: For emojis, we use Slack emoji names (without colons) instead of Unicode emojis. This ensures compatibility with Slack's reaction system. For example, use "rice" instead of 🌾, "castle" instead of 🏰. You can find available emoji names in your Slack workspace by typing `:` in the message input. The `emojiUnicode` field is included for reference only and is not used by the bot.
+> **Note**: For emojis, we use Slack emoji names (without colons) instead of Unicode emojis. This ensures compatibility with Slack's reaction system. For example, use "rice" instead of 🌾, "european_castle" instead of 🏰. You can find available emoji names in your Slack workspace by typing `:` in the message input. The `emojiUnicode` field is included for reference only and is not used by the bot.
 
 ### 3. Emoji Reactions
 The bot automatically adds emoji reactions for each suggested game, making it easy for people to indicate their preferences:
@@ -187,7 +189,7 @@ The development process with Cursor AI was methodical and educational:
 
 ### Configuration Management
 The AI helped establish a robust configuration system:
-```typescript
+```json
 // Before: Using Unicode emojis
 {
   "name": "Catan",

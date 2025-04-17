@@ -9,24 +9,28 @@
     {
       "name": "Catan",
       "emoji": "rice",
+      "emojiUnicode": "🌾",
       "minPlayers": 3,
       "maxPlayers": 4
     },
     {
       "name": "Carcassonne",
-      "emoji": "castle",
+      "emoji": "european_castle",
+      "emojiUnicode": "🏰",
       "minPlayers": 2,
       "maxPlayers": 5
     },
     {
       "name": "7 Wonders",
       "emoji": "classical_building",
+      "emojiUnicode": "🏛️",
       "minPlayers": 3,
       "maxPlayers": 7
     },
     {
       "name": "Azul",
       "emoji": "art",
+      "emojiUnicode": "🎨",
       "minPlayers": 2,
       "maxPlayers": 4
     }
