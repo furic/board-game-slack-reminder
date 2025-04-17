@@ -1,12 +1,10 @@
 {
-  "messages": {
-    "casual": [
-      "Heads up, nerds! It's board game Friday tomorrow 🃏 – 4:30pm at L9!",
-      "Warning: Friday fun incoming! Join us 4:30pm tomorrow at L9 🎲",
-      "Don't make weekend plans – we roll dice tomorrow, 4:30pm L9 😉",
-      "Game on! Board games kick off 4:30pm tomorrow at L9 – be there or be square 🎯"
-    ]
-  },
+  "messages": [
+    "Heads up, nerds! It's board game Friday tomorrow 🃏 – 4:30pm at L9!",
+    "Warning: Friday fun incoming! Join us 4:30pm tomorrow at L9 🎲",
+    "Don't make weekend plans – we roll dice tomorrow, 4:30pm L9 😉",
+    "Game on! Board games kick off 4:30pm tomorrow at L9 – be there or be square 🎯"
+  ],
   "games": {
     "list": [
       "Catan",

@@ -25,7 +25,7 @@ function pickRandomGames(count: number = config.games.defaultPickCount): string[
 }
 
 async function sendReminder(): Promise<void> {
-  const message = config.messages.casual[Math.floor(Math.random() * config.messages.casual.length)];
+  const message = config.messages[Math.floor(Math.random() * config.messages.length)];
   const [game1, game2] = pickRandomGames();
   const finalMessage = `${message}\n🎮 We'll likely play *${game1}* and *${game2}*!`;
 

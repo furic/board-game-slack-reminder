@@ -3,11 +3,7 @@ export interface GameConfig {
   defaultPickCount: number;
 }
 
-export interface MessageConfig {
-  casual: string[];
-}
-
 export interface AppConfig {
-  messages: MessageConfig;
+  messages: string[];
   games: GameConfig;
 } 
