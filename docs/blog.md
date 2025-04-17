@@ -88,8 +88,13 @@ The bot requires several Slack permissions:
 ### 3. Environment Configuration
 I separated the configuration into:
 - `.env`: For sensitive data (Slack token)
-- `config.json`: For game list and channel settings
-- `config.test.json`: For testing configuration
+- `config.json`: For game list and channel settings (production)
+- `config.test.json`: For testing configuration (separate channel and settings)
+
+This separation allows us to:
+- Keep sensitive data out of version control
+- Test new features safely in a separate channel
+- Easily switch between production and test environments
 
 ### 4. Implementing the Core Logic
 The main functionality is in `src/board-game-reminder.ts`:
