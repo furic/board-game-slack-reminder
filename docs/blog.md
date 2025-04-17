@@ -42,26 +42,28 @@ const messages = [
 ```
 
 ### 2. Game Configuration
-Each game is configured with its name, emoji, and player count requirements:
+Each game is configured with its name, Slack emoji name, and player count requirements:
 
 ```typescript
 {
   "games": [
     {
       "name": "Catan",
-      "emoji": "🌾",
+      "emoji": "rice",      // Slack emoji name for 🌾
       "minPlayers": 3,
       "maxPlayers": 4
     },
     {
       "name": "Carcassonne",
-      "emoji": "🏰",
+      "emoji": "castle",    // Slack emoji name for 🏰
       "minPlayers": 2,
       "maxPlayers": 5
     }
   ]
 }
 ```
+
+> **Note**: For emojis, we use Slack emoji names (without colons) instead of Unicode emojis. This ensures compatibility with Slack's reaction system. For example, use "rice" instead of 🌾, "castle" instead of 🏰. You can find available emoji names in your Slack workspace by typing `:` in the message input.
 
 ### 3. Emoji Reactions
 The bot automatically adds emoji reactions for each suggested game, making it easy for people to indicate their preferences:
