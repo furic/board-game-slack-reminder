@@ -8,25 +8,25 @@
   "games": [
     {
       "name": "Catan",
-      "emoji": "🌾",
+      "emoji": "rice",
       "minPlayers": 3,
       "maxPlayers": 4
     },
     {
       "name": "Carcassonne",
-      "emoji": "🏰",
+      "emoji": "castle",
       "minPlayers": 2,
       "maxPlayers": 5
     },
     {
       "name": "7 Wonders",
-      "emoji": "🏛️",
+      "emoji": "classical_building",
       "minPlayers": 3,
       "maxPlayers": 7
     },
     {
       "name": "Azul",
-      "emoji": "🎨",
+      "emoji": "art",
       "minPlayers": 2,
       "maxPlayers": 4
     }

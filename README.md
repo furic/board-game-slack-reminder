@@ -99,9 +99,11 @@ Each config file contains:
 - `messages`: Array of possible reminder messages
 - `games`: Array of games with:
   - `name`: Game name
-  - `emoji`: Associated emoji
+  - `emoji`: Slack emoji name (without colons, e.g., "game_die" not ":game_die:" or "🎲")
   - `minPlayers`: Minimum number of players required
   - `maxPlayers`: Maximum number of players allowed
+
+> **Note**: For the `emoji` field, use valid Slack emoji names without colons. For example, use "rice" for 🌾, "castle" for 🏰, etc. You can find a list of available emojis in your Slack workspace by typing `:` in the message input.
 
 ## Recent Updates
 
