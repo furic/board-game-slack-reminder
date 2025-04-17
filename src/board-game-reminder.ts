@@ -19,13 +19,13 @@ function pickRandomGames(count: number = 2): Game[] {
   return shuffled.slice(0, count);
 }
 
-async function addReactions(channel: string, timestamp: string, games: Game[]): Promise<void> {
+async function addReactions(channelId: string, timestamp: string, games: Game[]): Promise<void> {
   for (const game of games) {
     try {
       await client.reactions.add({
-        channel,
+        channel: channelId,
         timestamp,
-        name: game.emoji
+        name: game.emoji.replace(/:/g, '') // Remove colons from emoji name if present
       });
       console.log(`Added reaction ${game.emoji} for ${game.name}`);
     } catch (error) {
@@ -46,11 +46,11 @@ async function sendReminder(): Promise<void> {
       text: finalMessage
     });
 
-    if (result.ok && result.ts) {
+    if (result.ok && result.ts && result.channel) {
       console.log('Message sent successfully!');
-      await addReactions(config.channel, result.ts, games);
+      await addReactions(result.channel, result.ts, games);
     } else {
-      console.error('Failed to get message timestamp:', result);
+      console.error('Failed to get message timestamp or channel:', result);
     }
   } catch (error) {
     console.error('Error sending reminder:', error);
