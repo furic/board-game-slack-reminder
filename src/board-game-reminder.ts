@@ -19,18 +19,15 @@ function pickRandomGames(count: number = 2): Game[] {
   return shuffled.slice(0, count);
 }
 
-async function addReactions(channelId: string, timestamp: string, games: Game[]): Promise<void> {
-  for (const game of games) {
-    try {
-      await client.reactions.add({
-        channel: channelId,
-        timestamp,
-        name: game.emoji.replace(/:/g, '') // Remove colons from emoji name if present
-      });
-      console.log(`Added reaction ${game.emoji} for ${game.name}`);
-    } catch (error) {
-      console.error(`Error adding reaction ${game.emoji} for ${game.name}:`, error);
-    }
+async function addReactions(channel: string, ts: string, game: Game) {
+  try {
+    await client.reactions.add({
+      channel,
+      timestamp: ts,
+      name: game.emoji
+    });
+  } catch (error) {
+    console.error('Error adding reactions:', error);
   }
 }
 
@@ -38,7 +35,7 @@ async function sendReminder(): Promise<void> {
   try {
     const message = config.messages[Math.floor(Math.random() * config.messages.length)];
     const games = pickRandomGames();
-    const gamesList = games.map(game => `${game.emoji} *${game.name}*`).join(', ');
+    const gamesList = games.map(game => `:${game.emoji}: *${game.name}*`).join(', ');
     const finalMessage = `${message}\n🎮 We'll likely play ${gamesList}!\n\nReact with the emoji of the game you'd like to play!`;
 
     const result = await client.chat.postMessage({
@@ -48,7 +45,9 @@ async function sendReminder(): Promise<void> {
 
     if (result.ok && result.ts && result.channel) {
       console.log('Message sent successfully!');
-      await addReactions(result.channel, result.ts, games);
+      for (const game of games) {
+        await addReactions(result.channel, result.ts, game);
+      }
     } else {
       console.error('Failed to get message timestamp or channel:', result);
     }
