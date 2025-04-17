@@ -2,7 +2,7 @@ import { WebClient } from '@slack/web-api';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import * as path from 'path';
-import { AppConfig } from './types';
+import { AppConfig, Game } from './types';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -19,7 +19,7 @@ const config: AppConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
 const client = new WebClient(BOT_TOKEN);
 
-function pickRandomGames(count: number = config.games.pickCount): string[] {
+function pickRandomGames(count: number = config.games.pickCount): Game[] {
   const shuffled = [...config.games.list].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 }
@@ -27,8 +27,8 @@ function pickRandomGames(count: number = config.games.pickCount): string[] {
 async function sendReminder(): Promise<void> {
   const message = config.messages[Math.floor(Math.random() * config.messages.length)];
   const games = pickRandomGames();
-  const gamesList = games.map(game => `*${game}*`).join(', ');
-  const finalMessage = `${message}\n🎮 We'll likely play ${gamesList}!`;
+  const gamesList = games.map(game => `${game.emoji} *${game.name}*`).join(', ');
+  const finalMessage = `${message}\n🎮 We'll likely play ${gamesList}!\n\nReact with the emoji of the game you'd like to play!`;
 
   try {
     await client.chat.postMessage({

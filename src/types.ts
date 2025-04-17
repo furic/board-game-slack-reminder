@@ -1,5 +1,10 @@
+export interface Game {
+  name: string;
+  emoji: string;
+}
+
 export interface GameConfig {
-  list: string[];
+  list: Game[];
   pickCount: number;
 }
 
