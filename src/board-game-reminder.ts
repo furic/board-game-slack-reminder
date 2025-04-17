@@ -19,7 +19,7 @@ const config: AppConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
 const client = new WebClient(BOT_TOKEN);
 
-function pickRandomGames(count: number = config.games.defaultPickCount): string[] {
+function pickRandomGames(count: number = config.games.pickCount): string[] {
   const shuffled = [...config.games.list].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 }

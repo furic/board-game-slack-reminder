@@ -1,6 +1,6 @@
 export interface GameConfig {
   list: string[];
-  defaultPickCount: number;
+  pickCount: number;
 }
 
 export interface AppConfig {
