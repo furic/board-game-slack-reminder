@@ -1,5 +1,10 @@
 # Board Game Slack Reminder
 
+[![CI](https://github.com/furic/board-game-slack-reminder/actions/workflows/ci.yml/badge.svg)](https://github.com/furic/board-game-slack-reminder/actions/workflows/ci.yml)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-blue.svg)](https://www.typescriptlang.org/)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A Slack bot that sends reminders for board game sessions and helps coordinate game selection through emoji reactions.
 
 ## Features
