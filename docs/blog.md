@@ -162,6 +162,52 @@ The project is open source and available on GitHub. To set up your own instance:
 
 4. Deploy and enjoy automated game night coordination!
 
+## Development with Cursor AI
+
+One of the interesting aspects of this project was my experience using Cursor AI as a development partner. What impressed me most was how the AI assistant helped navigate through some tricky implementation details:
+
+### Intelligent API Understanding
+I was particularly surprised by how Cursor AI understood the Slack API requirements. When implementing emoji reactions, it correctly identified that we needed to use Slack's emoji format (e.g., "rice" instead of "🌾") rather than Unicode emojis. This saved me from potential runtime issues and demonstrated the AI's practical knowledge of API specifications.
+
+### Step-by-Step Problem Solving
+The development process with Cursor AI was methodical and educational:
+
+1. **Initial Implementation**: We started with Unicode emojis in the configuration files, which seemed logical at first.
+
+2. **Problem Identification**: When testing the bot, we encountered `invalid_name` errors with emoji reactions. Cursor AI quickly identified that Slack's API requires emoji names rather than Unicode characters.
+
+3. **Systematic Updates**: The AI guided me through updating multiple files:
+   - Changed emoji format in `config.json` and `config.test.json`
+   - Updated documentation in README.md
+   - Added clear examples and explanations in this blog
+
+4. **Testing and Verification**: After each change, the AI suggested running tests to verify the fixes, showing a practical understanding of development workflows.
+
+### Configuration Management
+The AI helped establish a robust configuration system:
+```typescript
+// Before: Using Unicode emojis
+{
+  "name": "Catan",
+  "emoji": "🌾",  // This caused issues with Slack's API
+}
+
+// After: Using Slack emoji names
+{
+  "name": "Catan",
+  "emoji": "rice",  // This works correctly with Slack reactions
+}
+```
+
+### Documentation Focus
+What stood out was the AI's insistence on maintaining clear documentation. It made sure to:
+- Add explanatory notes about emoji usage
+- Include practical examples
+- Document the reasoning behind technical decisions
+- Keep configuration files in sync
+
+This experience showed how AI can be a valuable development partner, not just for writing code but for maintaining best practices and documentation throughout the development process.
+
 ## Conclusion
 
 Building this bot was a fun way to solve a real problem while learning about:
