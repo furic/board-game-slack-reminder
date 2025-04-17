@@ -5,17 +5,31 @@
     "Don't make weekend plans – we roll dice tomorrow, 4:30pm L9 😉",
     "Game on! Board games kick off 4:30pm tomorrow at L9 – be there or be square 🎯"
   ],
-  "games": {
-    "list": [
-      { "name": "Catan", "emoji": "🌾" },
-      { "name": "Carcassonne", "emoji": "🏰" },
-      { "name": "7 Wonders", "emoji": "🏛️" },
-      { "name": "Azul", "emoji": "🎨" },
-      { "name": "Cascadia", "emoji": "🦊" },
-      { "name": "Wingspan", "emoji": "🦅" },
-      { "name": "Ticket to Ride", "emoji": "🚂" },
-      { "name": "ROOT", "emoji": "🦝" }
-    ],
-    "pickCount": 2
-  }
+  "games": [
+    {
+      "name": "Catan",
+      "emoji": "🌾",
+      "minPlayers": 3,
+      "maxPlayers": 4
+    },
+    {
+      "name": "Carcassonne",
+      "emoji": "🏰",
+      "minPlayers": 2,
+      "maxPlayers": 5
+    },
+    {
+      "name": "7 Wonders",
+      "emoji": "🏛️",
+      "minPlayers": 3,
+      "maxPlayers": 7
+    },
+    {
+      "name": "Azul",
+      "emoji": "🎨",
+      "minPlayers": 2,
+      "maxPlayers": 4
+    }
+  ],
+  "channel": "board-games"
 } 

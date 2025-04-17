@@ -1,6 +1,8 @@
 export interface Game {
   name: string;
   emoji: string;
+  minPlayers?: number;
+  maxPlayers?: number;
 }
 
 export interface GameConfig {
@@ -9,6 +11,6 @@ export interface GameConfig {
 }
 
 export interface AppConfig {
-  messages: string[];
-  games: GameConfig;
+  games: Game[];
+  channel: string;
 } 

@@ -3,27 +3,16 @@ import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import * as path from 'path';
 import { AppConfig, Game } from './types';
+import config from './config.json';
 
 // Load environment variables from .env file
 dotenv.config();
 
 const BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
-const CHANNEL = process.env.SLACK_CHANNEL;
 
 if (!BOT_TOKEN) {
   throw new Error('SLACK_BOT_TOKEN environment variable is not set');
 }
-
-if (!CHANNEL) {
-  throw new Error('SLACK_CHANNEL environment variable is not set');
-}
-
-// At this point, TypeScript knows CHANNEL is a string
-const channel: string = CHANNEL;
-
-// Load configuration
-const configPath = path.join(__dirname, 'config.json');
-const config: AppConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
 const client = new WebClient(BOT_TOKEN);
 
@@ -48,23 +37,46 @@ async function addReactions(channel: string, timestamp: string, games: Game[]): 
 }
 
 async function sendReminder(): Promise<void> {
-  const message = config.messages[Math.floor(Math.random() * config.messages.length)];
-  const games = pickRandomGames();
-  const gamesList = games.map(game => `${game.emoji} *${game.name}*`).join(', ');
-  const finalMessage = `${message}\n🎮 We'll likely play ${gamesList}!\n\nReact with the emoji of the game you'd like to play!`;
-
   try {
-    const result = await client.chat.postMessage({
-      channel,
-      text: finalMessage
+    const message = await client.chat.postMessage({
+      channel: config.channel,
+      text: "🎲 *Board Game Night Reminder!* 🎲\n\nReact with the emoji of the game you'd like to play:",
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "🎲 *Board Game Night Reminder!* 🎲\n\nReact with the emoji of the game you'd like to play:"
+          }
+        },
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: config.games.map(game => `${game.emoji} ${game.name}`).join('\n')
+          }
+        }
+      ]
     });
-    
-    if (result.ok && result.ts) {
-      console.log('Message sent successfully!');
-      await addReactions(channel, result.ts, games);
-    } else {
-      console.error('Failed to get message timestamp:', result);
+
+    if (!message.ok || !message.ts) {
+      throw new Error('Failed to send message');
     }
+
+    // Add reactions for each game
+    for (const game of config.games) {
+      try {
+        await client.reactions.add({
+          channel: config.channel,
+          timestamp: message.ts,
+          name: game.emoji
+        });
+      } catch (error) {
+        console.error(`Error adding reaction ${game.emoji} for ${game.name}:`, error);
+      }
+    }
+
+    console.log('Message sent successfully!');
   } catch (error) {
     console.error('Error sending reminder:', error);
   }
