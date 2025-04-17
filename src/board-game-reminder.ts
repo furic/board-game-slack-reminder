@@ -8,10 +8,18 @@ import { AppConfig, Game } from './types';
 dotenv.config();
 
 const BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
+const CHANNEL = process.env.SLACK_CHANNEL;
 
 if (!BOT_TOKEN) {
   throw new Error('SLACK_BOT_TOKEN environment variable is not set');
 }
+
+if (!CHANNEL) {
+  throw new Error('SLACK_CHANNEL environment variable is not set');
+}
+
+// At this point, TypeScript knows CHANNEL is a string
+const channel: string = CHANNEL;
 
 // Load configuration
 const configPath = path.join(__dirname, 'config.json');
@@ -47,13 +55,13 @@ async function sendReminder(): Promise<void> {
 
   try {
     const result = await client.chat.postMessage({
-      channel: 'social-board-games',
+      channel,
       text: finalMessage
     });
     
     if (result.ok && result.ts) {
       console.log('Message sent successfully!');
-      await addReactions('social-board-games', result.ts, games);
+      await addReactions(channel, result.ts, games);
     } else {
       console.error('Failed to get message timestamp:', result);
     }
