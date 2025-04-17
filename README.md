@@ -10,6 +10,12 @@ A Slack bot that sends reminders for board game sessions and helps coordinate ga
 - Supports both production and testing environments
 - Shows player count requirements for each game
 
+## Example Output
+
+![Bot Message Example](docs/images/bot-message-example.png)
+
+The bot sends a friendly reminder and adds emoji reactions for each game, making it easy for users to indicate which games they'd like to play.
+
 ## Quick Start
 
 ### 1. Create and Configure Slack App
