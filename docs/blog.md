@@ -7,6 +7,8 @@ As a software engineer and board game enthusiast, I wanted to solve a common pro
 2. Suggest games to play
 3. Get quick feedback on game preferences
 
+> **Note**: While this bot was built specifically for board game nights, its flexible design makes it suitable for any recurring team activity. You can easily adapt it for weekly sports days, monthly picnics, or any other regular team gathering by customizing the messages and options in the configuration files.
+
 This led me to create a Slack bot that would handle these tasks automatically. In this post, I'll share my journey of building this bot using TypeScript, Slack's Web API, and GitHub Actions.
 
 ## The Initial Idea

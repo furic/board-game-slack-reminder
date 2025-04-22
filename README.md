@@ -14,6 +14,9 @@ A Slack bot that sends reminders for board game sessions and helps coordinate ga
 - Adds emoji reactions for each game, allowing participants to vote
 - Supports both production and testing environments
 - Shows player count requirements for each game
+- Versatile for any recurring activity (sports, picnics, team events)
+
+> **Note**: While this bot is designed for board game nights, it can be easily adapted for any recurring team activity. Simply customize the messages and options in the configuration files to match your event type, whether it's a weekly sports day, monthly picnic, or any other regular team gathering.
 
 ## Example Output
 
@@ -100,10 +103,11 @@ Each config file contains:
 - `games`: Array of games with:
   - `name`: Game name
   - `emoji`: Slack emoji name (without colons, e.g., "game_die" not ":game_die:" or "🎲")
+  - `emojiUnicode`: Unicode emoji for reference (e.g., "🌾" for Catan)
   - `minPlayers`: Minimum number of players required
   - `maxPlayers`: Maximum number of players allowed
 
-> **Note**: For the `emoji` field, use valid Slack emoji names without colons. For example, use "rice" for 🌾, "castle" for 🏰, etc. You can find a list of available emojis in your Slack workspace by typing `:` in the message input.
+> **Note**: For the `emoji` field, use valid Slack emoji names without colons. For example, use "rice" for 🌾, "castle" for 🏰, etc. You can find a list of available emojis in your Slack workspace by typing `:` in the message input. The `emojiUnicode` field is for reference only and is not used by the bot.
 
 ## Recent Updates
 
