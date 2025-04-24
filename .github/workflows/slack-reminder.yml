@@ -24,6 +24,6 @@ jobs:
         run: npm run build
 
       - name: Send Slack message
-        run: node board-game-reminder.js
+        run: npm run start
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
