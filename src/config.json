@@ -3,7 +3,13 @@
     "Heads up, nerds! It's board game Friday tomorrow 🃏 – 4:30pm at L9!",
     "Warning: Friday fun incoming! Join us 4:30pm tomorrow at L9 🎲",
     "Don't make weekend plans – we roll dice tomorrow, 4:30pm L9 😉",
-    "Game on! Board games kick off 4:30pm tomorrow at L9 – be there or be square 🎯"
+    "Game on! Board games kick off 4:30pm tomorrow at L9 – be there or be square 🎯",
+    "Roll call! Board game night is tomorrow at 4:30pm, L9 🎲",
+    "Get ready to strategize! Board games start tomorrow, 4:30pm at L9 🧠",
+    "Fun alert! Join us for board games tomorrow at 4:30pm, L9 🎉",
+    "Dice and laughter await! See you tomorrow at 4:30pm, L9 🎲",
+    "Board game enthusiasts unite! Tomorrow, 4:30pm at L9 🃏",
+    "Bring your A-game! Board games kick off tomorrow at 4:30pm, L9 🏆"
   ],
   "games": [
     {
@@ -33,7 +39,42 @@
       "emojiUnicode": "🎨",
       "minPlayers": 2,
       "maxPlayers": 4
+    },
+    {
+      "name": "Cascadia",
+      "emoji": "evergreen_tree",
+      "emojiUnicode": "🌲",
+      "minPlayers": 1,
+      "maxPlayers": 4
+    },
+    {
+      "name": "Wingspan",
+      "emoji": "bird",
+      "emojiUnicode": "🐦",
+      "minPlayers": 1,
+      "maxPlayers": 5
+    },
+    {
+      "name": "Ticket to Ride",
+      "emoji": "train",
+      "emojiUnicode": "🚂",
+      "minPlayers": 2,
+      "maxPlayers": 5
+    },
+    {
+      "name": "ROOT",
+      "emoji": "deciduous_tree",
+      "emojiUnicode": "🌳",
+      "minPlayers": 2,
+      "maxPlayers": 4
+    },
+    {
+      "name": "Splendor",
+      "emoji": "gem",
+      "emojiUnicode": "💎",
+      "minPlayers": 2,
+      "maxPlayers": 4
     }
   ],
   "channel": "social-board-games"
-} 
+}
