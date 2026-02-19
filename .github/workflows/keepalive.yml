@@ -1,0 +1,34 @@
+name: Keepalive
+
+# Prevents GitHub from auto-disabling scheduled workflows after 60 days of repo inactivity.
+# This workflow re-enables all scheduled workflows every 50 days.
+
+on:
+  schedule:
+    - cron: '0 0 1 */2 *' # 1st of every other month (well within the 60-day window)
+  workflow_dispatch:
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Re-enable scheduled workflows
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const workflows = await github.rest.actions.listRepoWorkflows({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            for (const workflow of workflows.data.workflows) {
+              if (workflow.state === 'disabled_inactivity') {
+                console.log(`Re-enabling workflow: ${workflow.name} (${workflow.id})`);
+                await github.rest.actions.enableWorkflow({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  workflow_id: workflow.id,
+                });
+              }
+            }
